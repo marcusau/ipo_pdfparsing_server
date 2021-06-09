@@ -6,4 +6,4 @@ The module is mainly built by python3.7, and one server script of Natural Langua
 **Module Structures**
 
 
-![](/ipo_pdfparsing_server/pic/structure.JPG)
+![](pic/structure.JPG)
