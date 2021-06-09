@@ -3,14 +3,14 @@
 
 The module is mainly built by python3.7, and one server script of Natural Language Processing (NLP) application.
 
-**Module Structures**
+# **Module Structures**
 
 
 ![](pic/structure.JPG)
 
 
 
-**Module dependencies** 
+# **Module dependencies** 
 ### Config:
 #### yaml2pyclass : 0.1.0 (source : https://github.com/a-nau/yaml2pyclass  )
 
