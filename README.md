@@ -16,10 +16,10 @@ The module is mainly built by python3.7, and one server script of Natural Langua
 
 ### General Utility
 #### Numpy: 1.20.3 (source : https://www.numpy.org/ )
+#### filetype.py : v1.0.0 (source:  https://github.com/h2non/filetype.py )
 
 ### Pdf processing:
 #### Pymupdf : 1.18.13 (source : https://github.com/pymupdf/PyMuPDF )
-
 
 ### Machine learning
 #### Pytorch : 1.8.1+cpu (source : https://pytorch.org/  )
@@ -27,7 +27,7 @@ The module is mainly built by python3.7, and one server script of Natural Langua
 #### Scipy: 1.6.3 (source : https://www.scipy.org/ )
 #### intervaltree : 3.1.0 (source : https://github.com/chaimleib/intervaltree )
 
-### LP:
+### NLP:
 #### Clean-text : 0.4.0 (source : https://github.com/jfilter/clean-text )
 #### Rapidfuzz : 1.4.1 (source : https://github.com/maxbachmann/RapidFuzz )
 #### Pyflashtext : 2.7.1  (source :  https://github.com/francbartoli/pyflashtext )
