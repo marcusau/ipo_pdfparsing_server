@@ -31,6 +31,7 @@ class Config(yaml2pyclass.CodeGenerator):
             main: str
         
         port: int
+        host: str
         route: RouteClass
     
     @dataclasses.dataclass
@@ -47,4 +48,5 @@ class Config(yaml2pyclass.CodeGenerator):
     external_API: ExternalApiClass
     API: ApiClass
     ner_models: NerModelsClass
+    log_file_path: str
     search_word_file: str
