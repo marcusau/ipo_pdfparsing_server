@@ -340,32 +340,33 @@ def get_chunks(seq):
             else:
                 pass
         else:
-            tok_class, tok_chunk_type = tok.split('-')[0],tok.split('-')[1]
-            if tok_class == 'S':
-                chunk = (tok_chunk_type, i, i+1)
-                chunks.append(chunk)
-                chunk_type, chunk_start = None, None
-            if tok_class == 'B':
-                chunk_start = i
-                chunk_type = tok_chunk_type
-            if tok_class == 'I':
-                if chunk_type is not None:
-                    if chunk_type == tok_chunk_type:
+            if re.search('\-',tok):
+                tok_class, tok_chunk_type = tok.split('-')[0],tok.split('-')[1]
+                if tok_class == 'S':
+                    chunk = (tok_chunk_type, i, i+1)
+                    chunks.append(chunk)
+                    chunk_type, chunk_start = None, None
+                if tok_class == 'B':
+                    chunk_start = i
+                    chunk_type = tok_chunk_type
+                if tok_class == 'I':
+                    if chunk_type is not None:
+                        if chunk_type == tok_chunk_type:
+                            pass
+                        else:
+                            chunk_type, chunk_start = None, None
+                    else:
                         pass
+                if tok_class == 'E':
+                    if chunk_type is not None:
+                        if chunk_type == tok_chunk_type:
+                            chunk = (chunk_type, chunk_start, i+1)
+                            chunks.append(chunk)
+                            chunk_type, chunk_start = None, None
+                        else:
+                            chunk_type, chunk_start = None, None
                     else:
-                        chunk_type, chunk_start = None, None
-                else:
-                    pass
-            if tok_class == 'E':
-                if chunk_type is not None:
-                    if chunk_type == tok_chunk_type:
-                        chunk = (chunk_type, chunk_start, i+1)
-                        chunks.append(chunk)
-                        chunk_type, chunk_start = None, None
-                    else:
-                        chunk_type, chunk_start = None, None
-                else:
-                    pass
+                        pass
     return chunks
 
 
@@ -419,7 +420,7 @@ def fetch_pdf(pdf_path,tag='sponsors'):
 
     tag_search='underwriting' if tag.lower() in ['underwriting','underwriter','underwriters'] else 'parties'
     tag_pages,tag_toc=locate_pages(pdf_path,tag=tag_search,lang=lang)
-
+   # print(f"tag:{tag}, toc page :{tag_pages}")
     if  tag_pages is None:
         return {'status':'error','content':'cannot locate table of content of pdf, please check filetype and make sure the file is IPO prospectus'}
     else:
@@ -445,8 +446,9 @@ def fetch_pdf(pdf_path,tag='sponsors'):
         for text in process_text .split('\n'):
             tokens,ner_tags=scan_ner(text=text)
          #   print(tokens,ner_tags)
-            ners={' '.join(tokens[i[1]:i[2]]):i[0] for i in get_chunks(ner_tags)}
-            ner_results.update(ners)
+            ners={' '.join(tokens[i[1]:i[2]]):i[0] for i in get_chunks(ner_tags)  } if len(get_chunks(ner_tags))>0  else None
+            if ners :
+                ner_results.update(ners)
 
         if  tag.lower() in ['underwriting','underwriter','underwriters'] :
             underwriters_results=[w for w,n in ner_results.items() if n=='ORG']
@@ -489,6 +491,7 @@ def fetch_pdf(pdf_path,tag='sponsors'):
 def get_secfirm_list(sec_firm_api:str)->Dict:
     resp=requests.get(sec_firm_api)
     if resp.status_code is not 200:
+
         return None
     else:
         return {row.get('cSponsorNameEng'):{'chi':row.get('cSponsorNameChi'),'id':row.get('cSponsorID')} for row in json.loads(resp.content)['content']}
@@ -502,13 +505,14 @@ def main(code,eng_asa_url,chi_asa_url):
 
     download_results=download_asa(code,eng_asa_url,chi_asa_url)
 
-
     if download_results['status']=='error':
+
         return  download_results
     else:
 
         eng_pdf_path=download_results['content']['eng']
         sponsor_info=fetch_pdf(pdf_path=eng_pdf_path, tag='sponsor')
+       # print(f"sponsor info:{sponsor_info}")
         underwriter_info =fetch_pdf(pdf_path=eng_pdf_path, tag='underwriting')
 
         if sponsor_info['status']=='error' or underwriter_info['status']=='error':
@@ -544,7 +548,7 @@ def main(code,eng_asa_url,chi_asa_url):
 def ipo_pdf_parser(code,chi,eng,type=None):
     results=main(code,  eng,chi)
 
-    if results['status']=='error':
+    if results['status']!='success':
         return results
     else:
         result=results['content']
