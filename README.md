@@ -10,7 +10,7 @@ The module is mainly built by python3.7, and the api_server.py mainly uses the o
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# **Module Structures**
+### **Module Structures**
 ![](pic/structure.JPG)
 
 # structure of repository
@@ -64,6 +64,17 @@ hug is a python-based API framework which aims to drastically simplify Python AP
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+### **Request input **
+![](pic/input.JPG)
+
+
+
+### **output format**
+![](pic/output.JPG)
+
+
+### **error output**
+![](pic/error_output.JPG)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
