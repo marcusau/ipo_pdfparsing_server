@@ -1,15 +1,20 @@
 # Introduction
-#### This project is a python-based module, aimed  to faciliate to deliver the results of IPO sponsor/underwriter data parser from IPO document.
 
-The module is mainly built by python3.7, and one server script of Natural Language Processing (NLP) application.
+This project is a python-based module, aims to extract the company list (with titles) of IPO sponsors and underwriters from indicated pdf pages from pdf documents of IPO prospectus (English version only).
+
+The main script is the api_server.py and it was run at the background by .service script in UAT and production environment. 
+
+The key inputs of requests include stockcodes, asa filepath and type of information to be retrived (either sponsor or underwriter)
+
+The module is mainly built by python3.7, and the api_server.py mainly uses the open-library pymupdf (https://github.com/pymupdf/PyMuPDF) to read and extract the structure and content of pdf files and relies on two NLP models (one for line gluer  and one for Name entity recongition NER) to process the textual data extracted from PDF and finally apply the another open library, intervaltree (https://github.com/chaimleib/intervaltree) to regroup the company lists of sponsors and underwriters based on their span and location in the paragraph.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # **Module Structures**
-
-
 ![](pic/structure.JPG)
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # **Module dependencies** 
 ### Config:
 #### yaml2pyclass : 0.1.0 (source : https://github.com/a-nau/yaml2pyclass  )
@@ -34,3 +39,21 @@ The module is mainly built by python3.7, and one server script of Natural Langua
 
 ### API+Server
 #### Hug : 2.6.1 (source : https://hugapi.github.io/hug/ )
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
