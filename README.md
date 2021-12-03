@@ -56,7 +56,10 @@ hug is a python-based API framework which aims to drastically simplify Python AP
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # The key components of api_server.py
 - table of content search function (locate_pages function) : aims to find out the page numbers containing information of "parties involved" and "underwriting". It is relied on the keywords stored in the "search_keywords.txt" file and compare the text inside "table of content" extracted by the python module: pymupdf or fitz.
-- Deployment script of line gluer NLP model (/ML/eng_preprocessor.py)
+- Deployment script of line gluer NLP model (/ML/eng_preprocessor.py) : aims to align the text lines extract from the indicated pages of the pdf file
+- Deployment script of the NER model: the script of NER model is inside the api_server.py but the model file (model.pth) and the vocab files are stored in the /ML/ner_model in this repository. 
+- company name list and title regroup function: it is stored inside the main function of the api_server.py script
+
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
