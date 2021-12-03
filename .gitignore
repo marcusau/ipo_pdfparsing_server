@@ -1,3 +1,5 @@
 ﻿.idea
 Config/__pycache__
 ML/__pycache__
+fastapi_server.py
+uat_ipo_api_server.log
