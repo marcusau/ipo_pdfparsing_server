@@ -13,6 +13,19 @@ The module is mainly built by python3.7, and the api_server.py mainly uses the o
 # **Module Structures**
 ![](pic/structure.JPG)
 
+# structure of repository
+
+The repository has four key components:
+- Config folder : to store the high-level parameter and key settings , including, ip, port, API router and file path of NLP models, etc.
+- ML folder: to store file path and settings of two NLP models, line_gluer and Name Entity Recognition (NER). For the training and detail set-up of the two NLP models, please refer to their training repositories, https://github.com/etnetapp-dev/IPO_sponsor_lines_gluer  and https://github.com/etnetapp-dev/IPO_sponsor_NER_model 
+- api_server.py: use hug API framework (https://github.com/hugapi/hug) to consolidate all other components and act as API server to communicate between the web-server and all backend functions.
+
+The server_test.py script is designed to test the functionality of the api_server.py script. 
+
+# Why use hug API framework?
+hug is a python-based API framework which aims to drastically simplify Python API development process. Besides, it can easily be run by other WSGI based servers (please refer to the github repository :https://github.com/hugapi/hug )
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # **Module dependencies** 
@@ -41,7 +54,9 @@ The module is mainly built by python3.7, and the api_server.py mainly uses the o
 #### Hug : 2.6.1 (source : https://hugapi.github.io/hug/ )
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+# The key components of api_server.py
+- table of content search function (locate_pages function) : aims to find out the page numbers containing information of "parties involved" and "underwriting". It is relied on the keywords stored in the "search_keywords.txt" file and compare the text inside "table of content" extracted by the python module: pymupdf or fitz.
+- Deployment script of line gluer NLP model (/ML/eng_preprocessor.py)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
