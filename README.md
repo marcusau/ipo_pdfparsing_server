@@ -63,13 +63,14 @@ hug is a python-based API framework which aims to drastically simplify Python AP
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Input requests and output of the module
 
-### **Request input **
+### **Request input**
 ![](pic/input.JPG)
 
 
 
-### **output format**
+### **normal output**
 ![](pic/output.JPG)
 
 
