@@ -1,8 +1,9 @@
 external_API:
-  sec_firm: http://10.169.1.15/webdata/backend/api/get_ipo_sponsors.php
+  sec_firm: http://10.3.1.214/backend/api/get_ipo_sponsors.php
   pdf: http://10.1.8.151/InfoPool-ASA/SingleFileTx.do?reqid=802b&server=FILESERVER&filepath=
 API:
   port: 8005
+  host: 127.0.0.1
   route:
     main: '/ipopdf'
 
@@ -13,5 +14,5 @@ ner_models:
     tag_vocab: C:\Users\marcus\PycharmProjects\ipo_server\ML\ner_models\eng\tag_vocab.json
     max_len: 90
 
-
+log_file_path: C:\Users\marcus\PycharmProjects\ipo_server\ipo_sponsor.log
 search_word_file: C:\Users\marcus\PycharmProjects\ipo_server\Config\search_words.txt
