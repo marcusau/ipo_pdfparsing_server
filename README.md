@@ -65,15 +65,28 @@ hug is a python-based API framework which aims to drastically simplify Python AP
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Input requests and output of the module
 
+There are 3 key parameters to be included in the input request:
+- stockcode
+- asa pdf file path (both English and Chinese
+- datatype : either sponsor or underwriter
+
+User has to send POST requests and put the parameters into payload or into form (when use postman). The header and file of POST requests can be empty.
+
 ### **Request input**
 ![](pic/input.JPG)
 
-
+The response contains two key components: status and content. If the request is success, the status of response will be "success" and the content will contain both Chinese and English version of Company names in the "found" column ,together with the company ID.
 
 ### **normal output**
 ![](pic/output.JPG)
 
+For exception handle, the status of response will be "failure" and the content will be be message to describe the cause of exception.
 
+There are generally three type of exceptions :
+1. cannot download the pdf file to local temporary path --> caused by the error of asa pdf file path
+2. cannot locate table of content of pdf --> The Table of content in IPO prospectus pdf file is not detectable
+3. cannot detect sponsor/underwriter infomration --> The error from NLP NER models
+4. 
 ### **error output**
 ![](pic/error_output.JPG)
 
